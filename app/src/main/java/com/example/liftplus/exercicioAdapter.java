@@ -10,10 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import java.util.List;
-
 public class exercicioAdapter extends ArrayAdapter<exercicioRepository> {
-    public exercicioAdapter(@NonNull Context context, int resource) {
+    public exercicioAdapter(@NonNull Context context) {
         super(context, resource);
     }
 

@@ -87,5 +87,7 @@ public class NetworkUtils
         String jsonResponse = getExerciseFromHttpUrl(apiURl);
         List<exercicioRepository> exercicioRepositoryList = jsonFormatter(jsonResponse);
         return  exercicioRepositoryList;
+
+
     }
 }
