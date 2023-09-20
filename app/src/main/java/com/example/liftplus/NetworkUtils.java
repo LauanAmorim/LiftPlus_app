@@ -17,7 +17,7 @@ import java.util.Scanner;
 
 public class NetworkUtils
 {
-    private static final String API_URL = "https://openlibrary.org/search.json";
+    private static final String API_URL = "https://localhost:7119/api/Exercicio";
     private static final String QUERY_PARAM = "q";
 
     private static URL buildUrl(String exercicioSearchQuery){

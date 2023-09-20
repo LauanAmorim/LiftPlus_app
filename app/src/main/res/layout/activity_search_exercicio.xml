@@ -32,7 +32,7 @@
             android:layout_width="250dp"
             android:layout_height="45dp"
             android:layout_margin="10dp"
-            android:background="@drawable/edittext_background"
+            android:background="@android:drawable/alert_dark_frame"
             android:elevation="8dp"
             android:hint="Exercicio"
             android:importantForAutofill="no"
@@ -40,7 +40,7 @@
             android:onClick="searchBook"
             android:padding="12dp"
             android:textColor="@color/black"
-            android:textColorHint="@color/gray"
+            android:textColorHint="#000000"
             android:textSize="16sp" />
 
         <Button
@@ -52,10 +52,10 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
-            android:background="@drawable/search"
+            android:background="@drawable/ic_launcher_background"
             android:onClick="searchBook"
             android:padding="10dp"
-            android:src="@drawable/search" />
+            android:src="@mipmap/ic_launcher" />
     </LinearLayout>
 
     <ListView
@@ -73,9 +73,8 @@
         android:id="@+id/errorMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="@string/not_found"
+        android:layout_centerInParent="true"
+        android:text="&quot;not found&quot;"
         android:textColor="@color/black"
         android:visibility="invisible" />
 

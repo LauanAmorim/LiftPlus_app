@@ -12,7 +12,7 @@ import androidx.annotation.Nullable;
 
 public class exercicioAdapter extends ArrayAdapter<exercicioRepository> {
     public exercicioAdapter(@NonNull Context context) {
-        super(context, resource);
+        super(context, 0);
     }
 
     @NonNull

@@ -3,6 +3,7 @@ package com.example.liftplus;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.loader.app.LoaderManager;
 import androidx.loader.content.AsyncTaskLoader;
 import androidx.loader.content.Loader;
 
@@ -19,7 +20,7 @@ import org.w3c.dom.Text;
 import java.io.IOException;
 import java.util.List;
 
-public class searchExercicio extends AppCompatActivity {
+public class searchExercicio extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<exercicioRepository>>{
 
     private ListView dataListView;
     private EditText requestTag;
@@ -71,7 +72,7 @@ public class searchExercicio extends AppCompatActivity {
                     return;
                 }
                 loadingBar.setVisibility(View.VISIBLE);
-                if(mExercicioList !=) {
+                if(mExercicioList != null) {
                     deliverResult(mExercicioList);
                 }else{
                     forceLoad();
@@ -100,7 +101,56 @@ public class searchExercicio extends AppCompatActivity {
     }
 
     public void onLoadFinished(Loader<List<exercicioRepository>> loader, List<exercicioRepository> data) {
-        
+
+        loadingBar.setVisibility(View.INVISIBLE);
+
+        if (data == null) {
+            showErrorMessage();
+        } else {
+            adapter.clear();
+            adapter.addAll(data);
+            showJsonDataView();
+        }
     }
+
+    @Override
+    public void onLoaderReset(@NonNull Loader<List<exercicioRepository>> loader) {
+
+    }
+
+
+    public void onLoadReset(@NonNull Loader<List<exercicioRepository>> loader) {
+
+    }
+
+    private void showJsonDataView() {
+        errorMessage.setVisibility(View.INVISIBLE);
+        dataListView.setVisibility(View.VISIBLE);
+    }
+
+    private void showErrorMessage() {
+        dataListView.setVisibility(View.INVISIBLE);
+        errorMessage.setVisibility(View.VISIBLE);
+    }
+
+    public void searchExercicio(View view) {
+        makeExercicioSearchQuery();
+    }
+
+    private void makeExercicioSearchQuery() {
+        String exercicioQuery = requestTag.getText().toString();
+
+        Bundle queryBundle = new Bundle();
+        queryBundle.putString(exercicio_query_tag, exercicioQuery);
+
+        LoaderManager loaderManager = getSupportLoaderManager();
+        Loader<String> exercicioSearchLoader = loaderManager.getLoader(exercicio_search_loader);
+        if(exercicioSearchLoader == null){
+            loaderManager.initLoader(exercicio_search_loader, queryBundle, this);
+        }else{
+            loaderManager.restartLoader(exercicio_search_loader, queryBundle, this);
+        }
+    }
+
 
 }
